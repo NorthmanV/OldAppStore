@@ -18,11 +18,10 @@ class FeaturedAppsController: UICollectionViewController, UICollectionViewDelega
         super.viewDidLoad()
         collectionView?.backgroundColor = .white
         collectionView?.register(CategoryCell.self, forCellWithReuseIdentifier: cellId)
-        appCategories = AppCategory.sampleAppCategories()
-//        AppCategory.fetchFeaturedApps { (appCategories) in
-//            self.appCategories = appCategories
-//            self.collectionView?.reloadData()
-//        }
+        AppCategory.fetchFeaturedApps { (appCategories) in
+            self.appCategories = appCategories
+            self.collectionView?.reloadData()
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

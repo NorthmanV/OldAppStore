@@ -8,10 +8,18 @@
 
 import Foundation
 
-class App: NSObject {
+struct App: Decodable {
     var id: Int?
     var name: String?
     var category: String?
     var imageName: String?
     var price: Double?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "Id"
+        case name = "Name"
+        case category = "Category"
+        case imageName = "ImageName"
+        case price = "Price"
+    }
 }

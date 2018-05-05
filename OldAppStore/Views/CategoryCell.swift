@@ -77,7 +77,7 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = appsCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppCell
-        cell.app = appCategory?.apps?[indexPath.item]
+        cell.app = appCategory?.apps?[indexPath.row]
         return cell
     }
     

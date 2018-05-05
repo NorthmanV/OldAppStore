@@ -24,11 +24,8 @@ class AppCell: UICollectionViewCell {
                 }
                 nameLabel.frame = CGRect(x: 0, y: frame.width + 5, width: frame.width, height: 40)
                 nameLabel.sizeToFit()
-
             }
 
-            
-            
             categoryLabel.text = app?.category
             if let price = app?.price {
                 priceLabel.text = "$" + String(price)
@@ -62,7 +59,7 @@ class AppCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Battletoads and Double Dragon"
         label.font = UIFont.systemFont(ofSize: 13)
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         return label
     }()
     
