@@ -9,6 +9,7 @@
 import Foundation
 
 struct Categories: Decodable {
+    var bannerCategory: AppCategory?
     var categories: [AppCategory]?
 }
 
@@ -17,7 +18,7 @@ struct AppCategory: Decodable {
     var type: String?
     var apps: [App]?
     
-    static func fetchFeaturedApps(completion: @escaping ([AppCategory]) -> Void) {
+    static func fetchFeaturedApps(completion: @escaping (Categories) -> Void) {
         let urlString = "https://api.letsbuildthatapp.com/appstore/featured"
         let session = URLSession.shared.dataTask(with: URL(string: urlString)!) { (data, response, error) in
             if error != nil {
@@ -27,7 +28,7 @@ struct AppCategory: Decodable {
             do {
                 let decodedCategories = try JSONDecoder().decode(Categories.self, from: data!)
                 DispatchQueue.main.async {
-                    completion(decodedCategories.categories!)
+                    completion(decodedCategories)
                 }
             } catch let error{
                 print(error.localizedDescription)
