@@ -10,6 +10,7 @@ import UIKit
 
 class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    var featuredAppController: FeaturedAppsController?
     private let cellId = "AppCellId"
     
     var appCategory: AppCategory? {
@@ -66,7 +67,6 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[nameLabel(30)][v0][v1(0.5)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": appsCollectionView, "v1": deviderLineView, "nameLabel": nameLabel]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": deviderLineView]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
-
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -91,6 +91,11 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
         return UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let app = appCategory?.apps?[indexPath.item] {
+            featuredAppController?.showAppDetailFor(app)
+        }
+    }
     
 }
 
